@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel wykresów genetycznych</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+body {
+  margin: 0;
+  padding: 40px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #ff4d4f;
+}
+
+.description {
+  background-color: #111111;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 50px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  line-height: 1.6;
+}
+
+.charts {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* --- FIGURA --- */
+.chart-box {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  width: 100%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  border: 3px solid #2ecc71; /* zielonkawa ramka */
+  transition: 0.3s;
+}
+
+.chart-box:hover {
+  box-shadow: 0 12px 35px rgba(46, 204, 113, 0.4);
+  transform: translateY(-4px);
+}
+
+/* zawartość */
+.chart-content {
+  margin-bottom: 20px;
+}
+
+/* SVG */
+.chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* iframe */
+.chart-frame {
+  width: 100%;
+  height: 650px;
+  border: none;
+  background-color: #ffffff;
+}
+
+/* podpis pod figurą */
+.chart-caption {
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.6;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 15px;
+}
+
+.chart-caption strong {
+  color: #000000;
+}
+
+/* mobilne */
+@media (max-width: 768px) {
+  .chart-frame {
+    height: 450px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Panel Analizy Genetycznej</h1>
+
+  <div class="description">
+    Zestawienie wizualizacji danych genetycznych obejmujących analizę klastrów,
+    projekcję UMAP oraz ekspresję markerów molekularnych.
+  </div>
+
+  <div class="charts">
+
+    <!-- FIGURE 1 -->
+    <div class="chart-box">
+      <div class="chart-content">
+        <iframe src="../figures/UMAP_clusters.html" class="chart-frame"></iframe>
+      </div>
+      <div class="chart-caption">
+        <strong>Figure 1.</strong> Projekcja UMAP przedstawiająca strukturę klastrów
+        komórkowych w analizowanym zbiorze danych. Każdy kolor reprezentuje odrębny klaster.
+      </div>
+    </div>
+
+    <!-- FIGURE 2 -->
+    <div class="chart-box">
+      <div class="chart-content">
+        <iframe src="../figures/ClusterXSetsUMAP.html" class="chart-frame"></iframe>
+      </div>
+      <div class="chart-caption">
+        <strong>Figure 2.</strong> Wizualizacja relacji pomiędzy zestawami klastrów
+        w przestrzeni redukcji wymiarów.
+      </div>
+    </div>
+
+    <!-- FIGURE 3 -->
+    <div class="chart-box">
+      <div class="chart-content">
+        <img src="../figures/scaled_markers_heatmap.svg" class="chart-svg">
+      </div>
+      <div class="chart-caption">
+        <strong>Figure 3.</strong> Heatmapa skalowanej ekspresji markerów genetycznych
+        w poszczególnych klastrach.
+      </div>
+    </div>
+
+    <!-- FIGURE 4 -->
+    <div class="chart-box">
+      <div class="chart-content">
+        <img src="../figures/IS_data.svg" class="chart-svg">
+      </div>
+      <div class="chart-caption">
+        <strong>Figure 4.</strong> Charakterystyka danych IS przedstawiająca rozkład
+        zmiennych genetycznych w badanej populacji.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

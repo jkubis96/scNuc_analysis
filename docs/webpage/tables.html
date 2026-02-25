@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel tabel danych</title>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+body {
+  margin: 0;
+  padding: 40px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  color: #ff4d4f;
+  margin-bottom: 40px;
+}
+
+.table-box {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  margin-bottom: 60px;
+  border: 3px solid #2ecc71;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  color: black;
+  overflow-x: auto;
+}
+
+.table-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+
+
+select, input {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-right: 5px;
+}
+
+button.download-btn {
+  margin-top: 15px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2ecc71;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button.download-btn:hover {
+  background-color: #27ae60;
+}
+
+table.dataTable {
+  width: 100% !important;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Organoid Cell and Nucleus Features Tables</h1>
+
+  <!-- TABELA 1 -->
+  <div class="table-box">
+    <div class="table-title">Tabela 1 – Data table containing cell and nuclei features, along with metadata obtained after analysis using JIMG_ncd. </div>
+    <table id="table1" class="display"></table>
+    <button class="download-btn" onclick="downloadCSV('table1')">⬇ Download CSV</button>
+  </div>
+
+  <!-- TABELA 2 -->
+  <div class="table-box">
+    <div class="table-title">Tabela 2 – Table of differential features across cell clusters based on nuclei and cell features obtained with JIMG_ncd.</div>
+    <table id="table2" class="display"></table>
+    <button class="download-btn" onclick="downloadCSV('table2')">⬇ Download CSV</button>
+  </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<script>
+function loadExcel(filePath, tableId, enableClusterFilter = false) {
+  fetch(filePath)
+    .then(res => res.arrayBuffer())
+    .then(data => {
+      const workbook = XLSX.read(data);
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: "" });
+
+      if (!json.length) return;
+
+      const headers = json[0];
+      const rows = json.slice(1);
+
+      const table = document.getElementById(tableId);
+
+      // Head
+      let thead = "<thead><tr>";
+      headers.forEach(h => thead += `<th>${h}</th>`);
+      thead += "</tr></thead>";
+
+      // Row
+      let tbody = "<tbody>";
+      rows.forEach(row => {
+        tbody += "<tr>";
+        for (let i = 0; i < headers.length; i++) {
+          tbody += `<td>${row[i]}</td>`;
+        }
+        tbody += "</tr>";
+      });
+      tbody += "</tbody>";
+
+      table.innerHTML = thead + tbody;
+
+      const theadEl = table.querySelector('thead');
+      const filterRow = theadEl.insertRow(1); 
+      headers.forEach((title, i) => {
+        const th = document.createElement('th');
+       
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = 'Search ' + title;
+        input.addEventListener('keyup', function() {
+          dataTable.column(i).search(this.value).draw();
+        });
+        th.appendChild(input);
+        
+        filterRow.appendChild(th);
+      });
+
+      // DataTables
+      const dataTable = $(table).DataTable({
+        pageLength: 10,
+        ordering: true,
+        searching: true,
+        paging: true,
+        scrollX: true,
+        autoWidth: false,
+        orderCellsTop: true
+      });
+
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Błąd ładowania pliku: " + filePath);
+    });
+}
+
+// Download CSV 
+function downloadCSV(tableId) {
+  const table = $('#' + tableId).DataTable();
+  const headers = [];
+  $('#' + tableId + ' thead tr:eq(0) th').each(function() { headers.push($(this).text()); });
+  const rows = table.rows({ search: 'applied' }).data();
+  let csv = headers.join(",") + "\n";
+  rows.each(row => { csv += row.join(",") + "\n"; });
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = tableId + ".csv";
+  link.click();
+}
+
+// Load tabel
+loadExcel("../tables/full_data.xlsx", "table1");
+loadExcel("../tables/markers_clusters.xlsx", "table2", true);
+
+</script>
+</body>
+</html>

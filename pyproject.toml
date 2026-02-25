@@ -1,0 +1,34 @@
+[project]
+name = "analysis_env"
+version = "0.2.0"
+description = "organoids and embryos scRNA_seq - analysis"
+readme = "README.md"
+
+authors = [
+    { name = "Jakub Kubis - JBS", email = "jbiosystem@gmail.com" }
+]
+
+requires-python = ">=3.12,<3.13"
+
+keywords = [
+    "scRNA_seq", "SEQ", "GO", "pathways", "interactions",
+    "gene ontology", "diseases", "enrichment", "OMIC"
+]
+
+
+
+dependencies = [
+    "jimg-ncd (>=0.2.1,<0.3.0)",
+    "pickshot (>=0.1.1,<0.2.0)"
+   
+]
+
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+spyder-kernels = "2.4"
+
