@@ -70,10 +70,10 @@
     .gallery img {
       width: calc(33.333% - 14px);
       max-width: 300px;
-      height: auto;            /* KLUCZOWE */
+      height: auto;            
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(44, 255, 93, 0.3);
-      object-fit: contain;     /* nie ucina */
+      object-fit: contain;     
       transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
       border: 2px solid #303d30;
@@ -8521,7 +8521,7 @@ const setSelect = document.getElementById("setSelect");
 const description = document.getElementById("description");
 const gallery = document.getElementById("gallery");
 
-// funkcja wczytująca galerię
+// load gallery
 function loadGallery() {
   const cluster = clusterSelect.value;
   const set = setSelect.value;

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JIMG_ncd – organoid cell & nucleus analysis</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #484f4b;
+      color: #ffffff;
+    }
+
+    header {
+      background: linear-gradient(135deg, #129c2b, #000000);
+      color: white;
+      padding: 8px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 42px;
+    }
+
+    header p {
+      font-size: 18px;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: rgb(0, 0, 0);
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 250px); /* stała szerokość */
+      place-content: center; /* wyśrodkowanie poziome i pionowe */
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: rgb(38, 40, 38);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;        
+      object-fit: contain;  
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #000000; /* poprawka kontrastu */
+    }
+
+    .card p {
+      font-size: 14px;   
+      line-height: 1.2;
+    }
+
+    footer {
+      background: #000000;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>JIMG_ncd</h1>
+    <p>organoid cell & nucleus analysis</p>
+
+  </header>
+
+  
+  <div class="container">
+    
+    <section style="max-width: 1050px; margin: 0 auto; line-height: 1.2; font-family: Arial, sans-serif; position: relative; top: -20px;">
+  
+      <h2>Flow Cytometry Analysis of Fused Dorsal–Ventral Organoids</h2>
+
+  <p>
+    This webpage presents the results of flow cytometry analysis performed on fused dorsal–ventral organoids 
+    using the Amnis ImageStream platform. The data were analyzed with the 
+    <a href="https://github.com/jkubis96/JIMG_ncd" target="_blank" style="color:blue; text-decoration:underline;">
+      JIMG_ncd
+    </a> Python library.
+  </p>
+
+  <p>
+    The analysis included automated nucleus detection and assessment of chromatin condensation status. 
+    Image-derived features of these structures were extracted and selected for further evaluation. 
+    We examined the relationships between nuclear morphology, chromatin organization, and whole-cell 
+    structure within organoids modeling Huntington's disease (HD).
+  </p>
+
+  <h3>CAG Repeat Variants (<em>HTT</em> / PolyQ Expansions)</h3>
+
+  <p>
+    The organoids represented different CAG repeat lengths in the huntingtin (<em>HTT</em>) gene, 
+    corresponding to PolyQ expansions:
+  </p>
+
+  <ul>
+    <li><strong>21Q</strong> – Control (healthy)</li>
+    <li><strong>71Q and 77Q</strong> – Adult-onset HD</li>
+    <li><strong>109Q</strong> – Juvenile-onset HD</li>
+  </ul>
+
+  <p>
+    Feature selection enabled the identification of distinct clusters of cells sharing similar 
+    phenotypic profiles. This approach revealed significant differences in both the abundance 
+    and morphological characteristics of HD cells compared to cells derived from healthy organoids.
+  </p>
+
+</section>
+  <a href="webpage/diagrams.html" style="text-decoration:none; color:inherit;">
+    <div class="grid">
+      <div class="card" id="stats">
+        <img src="logos/stats.png" alt="stats" />
+        <h3>Statistical Analysis</h3>
+  
+      </div>
+  </a>
+
+    <a href="webpage/tables.html" style="text-decoration:none; color:inherit;">
+      <div class="card" id="tables">
+        <img src="logos/tables.png" alt="tables" />
+        <h3>Tabular Data</h3>
+
+      </div>
+    </a>
+
+    <a href="webpage/images.html" style="text-decoration:none; color:inherit;">
+      <div class="card" id="mrna">
+        <img src="logos/image.png" alt="mRNA" />
+        <h3>Images data</h3>
+
+      </div>
+    </a>
+
+
+    </div>
+  </div>
+
+  <footer>
+    © 2026 JIMG_ncd – organoid cell & nucleus analysis
+  </footer>
+</body>
+</html>

@@ -44,14 +44,13 @@ h1 {
   gap: 60px;
 }
 
-/* --- FIGURA --- */
 .chart-box {
   background-color: #ffffff;
   padding: 30px;
   border-radius: 14px;
   width: 100%;
   box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-  border: 3px solid #2ecc71; /* zielonkawa ramka */
+  border: 3px solid #2ecc71; 
   transition: 0.3s;
 }
 
@@ -60,7 +59,6 @@ h1 {
   transform: translateY(-4px);
 }
 
-/* zawartość */
 .chart-content {
   margin-bottom: 20px;
 }
@@ -80,7 +78,6 @@ h1 {
   background-color: #ffffff;
 }
 
-/* podpis pod figurą */
 .chart-caption {
   font-size: 14px;
   color: #333333;
@@ -106,11 +103,12 @@ h1 {
 
 <div class="container">
 
-  <h1>Panel Analizy Genetycznej</h1>
+  <h1>JIMG_ncd analysis results</h1>
 
   <div class="description">
-    Zestawienie wizualizacji danych genetycznych obejmujących analizę klastrów,
-    projekcję UMAP oraz ekspresję markerów molekularnych.
+  Analyses using JIMG_ncd included the selection of nuclei with chromatin condensation, the extraction of their morphological features, and the integration of these features with cell-level morphological data obtained directly from Amnis ImageStream.  
+  Subsequently, the most relevant features were selected, dimensionality reduction and clustering with harmonization were performed, and distinguishing features for each cluster were identified.  
+  Finally, the composition of different cell types within each cluster was analyzed across various HD organoid types.
   </div>
 
   <div class="charts">
@@ -121,8 +119,7 @@ h1 {
         <iframe src="../figures/UMAP_clusters.html" class="chart-frame"></iframe>
       </div>
       <div class="chart-caption">
-        <strong>Figure 1.</strong> Projekcja UMAP przedstawiająca strukturę klastrów
-        komórkowych w analizowanym zbiorze danych. Każdy kolor reprezentuje odrębny klaster.
+        <strong>Figure 1.</strong> UMAP representation of HD organoid cells showing clusters identified using the DBSCAN algorithm.
       </div>
     </div>
 
@@ -132,8 +129,7 @@ h1 {
         <iframe src="../figures/ClusterXSetsUMAP.html" class="chart-frame"></iframe>
       </div>
       <div class="chart-caption">
-        <strong>Figure 2.</strong> Wizualizacja relacji pomiędzy zestawami klastrów
-        w przestrzeni redukcji wymiarów.
+        <strong>Figure 2.</strong> UMAP representation of HD organoid cells showing clusters identified using the DBSCAN algorithm, with cluster separation reflecting their set membership.
       </div>
     </div>
 
@@ -143,10 +139,10 @@ h1 {
         <img src="../figures/scaled_markers_heatmap.svg" class="chart-svg">
       </div>
       <div class="chart-caption">
-        <strong>Figure 3.</strong> Heatmapa skalowanej ekspresji markerów genetycznych
-        w poszczególnych klastrach.
+        <strong>Figure 3.</strong> Dominant features in clusters identified from differential analysis (cluster vs. all), based on scaled statistics from Mann–Whitney U tests with Hochberg correction.
       </div>
     </div>
+
 
     <!-- FIGURE 4 -->
     <div class="chart-box">
@@ -154,9 +150,7 @@ h1 {
         <img src="../figures/IS_data.svg" class="chart-svg">
       </div>
       <div class="chart-caption">
-        <strong>Figure 4.</strong> Charakterystyka danych IS przedstawiająca rozkład
-        zmiennych genetycznych w badanej populacji.
-      </div>
+        <strong>Figure 4.</strong> Normalized composition of individual organoids (sets) within each cluster. Cluster 11 was removed due to features suggesting non-biological artifacts.
     </div>
 
   </div>
