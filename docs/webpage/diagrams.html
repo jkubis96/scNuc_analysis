@@ -8,166 +8,154 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-* {
-    box-sizing: border-box; /* uwzględnia padding w szerokości */
-}
-
 body {
-    margin: 0;
-    padding: 40px;
-    font-family: 'Roboto', sans-serif;
-    background-color: #0a0a0a;
-    color: #e0e0e0;
-    overflow-x: hidden; /* zapobiega poziomemu scrollowi */
+  margin: 0;
+  padding: 40px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
 }
 
 .container {
-    max-width: 1000px;
-    margin: auto;
+  max-width: 1000px;
+  margin: auto;
 }
 
 h1 {
-    text-align: center;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: #ff4d4f;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #ff4d4f;
 }
 
 .description {
-    background-color: #111111;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 50px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-    line-height: 1.6;
+  background-color: #111111;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 50px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  line-height: 1.6;
 }
 
 .charts {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
 
 .chart-box {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 14px;
-    width: 100%;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    border: 3px solid #2ecc71;
-    transition: 0.3s;
-    overflow-x: hidden; /* zapobiega przesuwaniu się zawartości */
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  width: 100%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  border: 3px solid #2ecc71; 
+  transition: 0.3s;
 }
 
 .chart-box:hover {
-    box-shadow: 0 12px 35px rgba(46, 204, 113, 0.4);
-    transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(46, 204, 113, 0.4);
+  transform: translateY(-4px);
 }
 
 .chart-content {
-    margin-bottom: 20px;
-}
-
-/* iframe */
-.chart-frame {
-    width: 100%;
-    height: 65vh;   /* wysokość zależna od ekranu */
-    max-height: 650px;
-    border: none;
+  margin-bottom: 20px;
 }
 
 /* SVG */
 .chart-svg {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    display: block;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* iframe */
+.chart-frame {
+  width: 100%;
+  height: 650px;
+  border: none;
+  background-color: #ffffff;
 }
 
 .chart-caption {
-    font-size: 14px;
-    color: #333333;
-    line-height: 1.6;
-    border-top: 1px solid #e0e0e0;
-    padding-top: 15px;
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.6;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 15px;
 }
 
 .chart-caption strong {
-    color: #000000;
+  color: #000000;
 }
 
 /* mobilne */
 @media (max-width: 768px) {
-    body {
-        padding: 20px;
-    }
-
-    .chart-frame {
-        height: 50vh;
-    }
-
-    .chart-svg {
-        max-height: 400px;
-    }
+  .chart-frame {
+    height: 450px;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-    <h1>JIMG_ncd analysis results</h1>
+  <h1>JIMG_ncd analysis results</h1>
 
-    <div class="description">
-        Analyses using JIMG_ncd included the selection of nuclei with chromatin condensation, the extraction of their morphological features, and the integration of these features with cell-level morphological data obtained directly from Amnis ImageStream.
-        Subsequently, the most relevant features were selected, dimensionality reduction and clustering with harmonization were performed, and distinguishing features for each cluster were identified.
-        Finally, the composition of different cell types within each cluster was analyzed across various HD organoid types.
+  <div class="description">
+  Analyses using JIMG_ncd included the selection of nuclei with chromatin condensation, the extraction of their morphological features, and the integration of these features with cell-level morphological data obtained directly from Amnis ImageStream.  
+  Subsequently, the most relevant features were selected, dimensionality reduction and clustering with harmonization were performed, and distinguishing features for each cluster were identified.  
+  Finally, the composition of different cell types within each cluster was analyzed across various HD organoid types.
+  </div>
+
+  <div class="charts">
+
+    <!-- FIGURE 1 -->
+    <div class="chart-box">
+      <div class="chart-content">
+        <iframe src="../figures/UMAP_clusters.html" class="chart-frame"></iframe>
+      </div>
+      <div class="chart-caption">
+        <strong>Figure 1.</strong> UMAP representation of HD organoid cells showing clusters identified using the DBSCAN algorithm.
+      </div>
     </div>
 
-    <div class="charts">
-
-        <!-- FIGURE 1 -->
-        <div class="chart-box">
-            <div class="chart-content">
-                <iframe src="../figures/UMAP_clusters.html" class="chart-frame"></iframe>
-            </div>
-            <div class="chart-caption">
-                <strong>Figure 1.</strong> UMAP representation of HD organoid cells showing clusters identified using the DBSCAN algorithm.
-            </div>
-        </div>
-
-        <!-- FIGURE 2 -->
-        <div class="chart-box">
-            <div class="chart-content">
-                <iframe src="../figures/ClusterXSetsUMAP.html" class="chart-frame"></iframe>
-            </div>
-            <div class="chart-caption">
-                <strong>Figure 2.</strong> UMAP representation of HD organoid cells showing clusters identified using the DBSCAN algorithm, with cluster separation reflecting their set membership.
-            </div>
-        </div>
-
-        <!-- FIGURE 3 -->
-        <div class="chart-box">
-            <div class="chart-content">
-                <img src="../figures/scaled_markers_heatmap.svg" class="chart-svg">
-            </div>
-            <div class="chart-caption">
-                <strong>Figure 3.</strong> Dominant features in clusters identified from differential analysis (cluster vs. all), based on scaled statistics from Mann–Whitney U tests with Hochberg correction.
-            </div>
-        </div>
-
-        <!-- FIGURE 4 -->
-        <div class="chart-box">
-            <div class="chart-content">
-                <img src="../figures/IS_data.svg" class="chart-svg">
-            </div>
-            <div class="chart-caption">
-                <strong>Figure 4.</strong> Normalized composition of individual organoids (sets) within each cluster. Cluster 11 was removed due to features suggesting non-biological artifacts.
-            </div>
-        </div>
-
+    <!-- FIGURE 2 -->
+    <div class="chart-box">
+      <div class="chart-content">
+        <iframe src="../figures/ClusterXSetsUMAP.html" class="chart-frame"></iframe>
+      </div>
+      <div class="chart-caption">
+        <strong>Figure 2.</strong> UMAP representation of HD organoid cells showing clusters identified using the DBSCAN algorithm, with cluster separation reflecting their set membership.
+      </div>
     </div>
+
+    <!-- FIGURE 3 -->
+    <div class="chart-box">
+      <div class="chart-content">
+        <img src="../figures/scaled_markers_heatmap.svg" class="chart-svg">
+      </div>
+      <div class="chart-caption">
+        <strong>Figure 3.</strong> Dominant features in clusters identified from differential analysis (cluster vs. all), based on scaled statistics from Mann–Whitney U tests with Hochberg correction.
+      </div>
+    </div>
+
+
+    <!-- FIGURE 4 -->
+    <div class="chart-box">
+      <div class="chart-content">
+        <img src="../figures/IS_data.svg" class="chart-svg">
+      </div>
+      <div class="chart-caption">
+        <strong>Figure 4.</strong> Normalized composition of individual organoids (sets) within each cluster. Cluster 11 was removed due to features suggesting non-biological artifacts.
+    </div>
+
+  </div>
+
 </div>
+
 </body>
 </html>
