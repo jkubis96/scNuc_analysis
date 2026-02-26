@@ -103,7 +103,7 @@ The analysis consisted of three main stages:
 The first stage involved a preliminary analysis of the results and manual selection of low-quality and high-quality images.  
 These images were used to train the PickShot model to enable accurate image quality control (QC) in the main analysis pipeline.
 
-Script available here 👉 [Results 📄](/scripts/prepare_pickshot_model.py)
+Script available here 👉 [Script 📄](/scripts/prepare_pickshot_model.py)
 
 ### 2. Image Filtering and Feature Extraction
 
@@ -113,7 +113,7 @@ Images were filtered using the trained PickShot model to ensure high-quality inp
 Subsequently, image-based features were extracted from imaging flow cytometry data acquired using the Amnis ImageStream system.  
 Feature extraction was performed using the JIMG_ncd library.
 
-Script available here 👉 [Results 📄](/scripts/data_prepare_features_selection.py)
+Script available here 👉 [Script 📄](/scripts/data_prepare_features_selection.py)
 
 ### 3. Downstream Analysis
 
@@ -126,7 +126,7 @@ The final stage included:
 
 This step enabled the assessment of cluster composition across different Huntington’s disease (HD) model organisms.
 
-Script available here 👉 [Results 📄](/scripts/analysis_features_and_images_selection.py)
+Script available here 👉 [Script 📄](/scripts/analysis_features_and_images_selection.py)
 
 
 <br>
